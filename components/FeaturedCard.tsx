@@ -26,7 +26,7 @@ export default function FeaturedCard({
           opacity: property.is_sold ? 0.5 : 1,
         },
       ]}
-      // onPress={() => router.push(`/(root)/property/${property.id}`)}
+      onPress={() => router.push(`/(root)/property/${property.id}`)}
       disabled={property.is_sold}
       activeOpacity={0.85}
     >

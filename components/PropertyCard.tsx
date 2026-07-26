@@ -10,6 +10,7 @@ import { Property } from "@/types";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { formatPrice } from "@/lib/utils";
+import useSavedProperty from "@/hooks/useSavedProperty";
 
 export default function PropertyCard({
   property,
@@ -22,7 +23,7 @@ export default function PropertyCard({
 }) {
   const router = useRouter();
 
-  const isSaved = true;
+  const {isSaved, saveLoading, toggleSave} = useSavedProperty(property.id, onUnsave)
 
   return (
     <TouchableOpacity
@@ -34,7 +35,7 @@ export default function PropertyCard({
       ]}
       activeOpacity={0.85}
       disabled={property.is_sold}
-      // onPress={() => router.push(`/(root)/property/${property.id}`)}
+      onPress={() => router.push(`/(root)/property/${property.id}`)}
     >
       <Image
         source={{ uri: property.images[0] }}
@@ -98,7 +99,10 @@ export default function PropertyCard({
         </View>
       </View>
 
-        <TouchableOpacity style={styles.heartButton}>
+        <TouchableOpacity 
+        onPress={toggleSave}
+        disabled={saveLoading}
+        style={styles.heartButton}>
             <Ionicons
             name={isSaved ? "heart" : "heart-outline"}
             size={18}

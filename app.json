@@ -28,6 +28,12 @@
     "plugins": [
       "expo-router",
       [
+        "expo-location",
+        {
+          "locationWhenInUsePermission" : "Allow Kribb to access your location to tag property coordinates"
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/kribb.png",
